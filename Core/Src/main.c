@@ -91,30 +91,35 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int count = 2, status = 1;
+  int count = 10;
   while (1)
   {
     /* USER CODE END WHILE */
-	  if(status == 1){
-			  HAL_GPIO_WritePin ( LED_YELLOW_GPIO_Port , LED_YELLOW_Pin , SET ) ;
-			  HAL_GPIO_WritePin ( LED_RED_GPIO_Port , LED_RED_Pin , RESET ) ;
-	  }
-	  else{
-			  HAL_GPIO_WritePin ( LED_RED_GPIO_Port , LED_RED_Pin , SET ) ;
+	  if(count <= 10 && count > 5){
 			  HAL_GPIO_WritePin ( LED_YELLOW_GPIO_Port , LED_YELLOW_Pin , RESET ) ;
+			  HAL_GPIO_WritePin ( LED_GREEN_GPIO_Port , LED_GREEN_Pin , RESET ) ;
+
+			  HAL_GPIO_WritePin ( LED_RED_GPIO_Port , LED_RED_Pin , SET ) ;
+	  }
+	  else if(count <= 5 && count > 3){
+			  HAL_GPIO_WritePin ( LED_RED_GPIO_Port , LED_RED_Pin , RESET ) ;
+
+			  HAL_GPIO_WritePin ( LED_YELLOW_GPIO_Port , LED_YELLOW_Pin , SET ) ;
+	  }
+	  else {
+
+		  HAL_GPIO_WritePin ( LED_YELLOW_GPIO_Port , LED_YELLOW_Pin , RESET ) ;
+
+		  HAL_GPIO_WritePin ( LED_GREEN_GPIO_Port , LED_GREEN_Pin , SET ) ;
 	  }
 	  count --;
 	  if(count == 0){
-		  status *= -1;
-		  count = 2;
+		  count = 10;
 	  }
 	  HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
 
   }
-  /* USER CODE END 3 */
-
-  /* USER CODE END 3 */
 }
 
 /**
